@@ -1,0 +1,10 @@
+export EDITOR=nvim
+
+# Extract and format the current git branch name
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+# Apply to the Prompt String (PS1) variable
+export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] \$ "
+
